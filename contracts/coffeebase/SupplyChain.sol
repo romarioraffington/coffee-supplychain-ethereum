@@ -370,7 +370,7 @@ contract SupplyChain {
   ) 
   {
     // Assign values to the 9 parameters
-    // itemSKU: items[_upc].sku;
+    itemSKU = items[_upc].sku;
     itemUPC = items[_upc].upc;
     productID = items[_upc].productID;
     productNotes = items[_upc].productNotes;
