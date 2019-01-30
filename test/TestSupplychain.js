@@ -14,7 +14,7 @@ contract("SupplyChain", function(accounts) {
   const originFarmLongitude = "144.341490";
   var productID = sku + upc;
   const productNotes = "Best beans for Espresso";
-  const productPrice = "1000000000000000000"; //web3.utils.toWei(1, "ether");
+  const productPrice = 1000000000000000000; //web3.utils.toWei(1, "ether");
   var itemState = 0;
   const distributorID = accounts[2];
   const retailerID = accounts[3];
@@ -109,12 +109,14 @@ contract("SupplyChain", function(accounts) {
 
   // 2nd Test
   it("Testing smart contract function processItem() that allows a farmer to process coffee", async () => {
-    const supplyChain = await SupplyChain.deployed();
+    const supplyChain = SupplyChain.deployed();
 
     // Declare and Initialize a variable for event
     var eventEmitted = false;
 
     // Watch the emitted event Processed()
+    var event = await supplyChain.Processed();
+
     await event.watch((err, res) => {
       eventEmitted = true;
     });
@@ -124,10 +126,10 @@ contract("SupplyChain", function(accounts) {
 
     // Retrieve the just now saved item from blockchain by calling function fetchItem()
     const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
-    assert.equal(eventEmitted, true, "Invalid event emitted");
 
     // Verify the result set
     assert.equal(resultBufferTwo[5], 1, "Error: Invalid item State");
+    assert.equal(eventEmitted, true, "Invalid event emitted");
   });
 
   // 3rd Test
@@ -138,6 +140,8 @@ contract("SupplyChain", function(accounts) {
     var eventEmitted = false;
 
     // Watch the emitted event Packed()
+    var event = await supplyChain.Packed();
+
     await event.watch((err, res) => {
       eventEmitted = true;
     });
@@ -161,6 +165,8 @@ contract("SupplyChain", function(accounts) {
     var eventEmitted = false;
 
     // Watch the emitted event ForSale()
+    var event = await supplyChain.ForSale();
+
     await event.watch((err, res) => {
       eventEmitted = true;
     });
@@ -185,6 +191,8 @@ contract("SupplyChain", function(accounts) {
     var eventEmitted = false;
 
     // Watch the emitted event Sold()
+    var event = await supplyChain.Sold();
+
     await event.watch((err, res) => {
       eventEmitted = true;
     });
@@ -215,6 +223,8 @@ contract("SupplyChain", function(accounts) {
     var eventEmitted = false;
 
     // Watch the emitted event Shipped()
+    var event = await supplyChain.Shipped();
+
     await event.watch((err, res) => {
       eventEmitted = true;
     });
@@ -238,6 +248,8 @@ contract("SupplyChain", function(accounts) {
     var eventEmitted = false;
 
     // Watch the emitted event Received()
+    var event = await supplyChain.Received();
+
     await event.watch((err, res) => {
       eventEmitted = true;
     });
@@ -268,6 +280,8 @@ contract("SupplyChain", function(accounts) {
     var eventEmitted = false;
 
     // Watch the emitted event Purchased()
+    var event = await supplyChain.Purchased();
+
     await event.watch((err, res) => {
       eventEmitted = true;
     });
