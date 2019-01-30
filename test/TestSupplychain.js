@@ -14,7 +14,7 @@ contract("SupplyChain", function(accounts) {
   const originFarmLongitude = "144.341490";
   var productID = sku + upc;
   const productNotes = "Best beans for Espresso";
-  const productPrice = web3.toWei(1, "ether");
+  const productPrice = "1000000000000000000"; //web3.utils.toWei(1, "ether");
   var itemState = 0;
   const distributorID = accounts[2];
   const retailerID = accounts[3];
@@ -49,7 +49,8 @@ contract("SupplyChain", function(accounts) {
     var eventEmitted = false;
 
     // Watch the emitted event Harvested()
-    var event = supplyChain.Harvested();
+    var event = await supplyChain.Harvested();
+
     await event.watch((err, res) => {
       eventEmitted = true;
     });
@@ -339,36 +340,36 @@ contract("SupplyChain", function(accounts) {
     const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
 
     // Verify the result set:
-    assert.equal(resultBufferOne[0], sku, "Error: Invalid item SKU");
-    assert.equal(resultBufferOne[1], upc, "Error: Invalid item UPC");
+    assert.equal(resultBufferTwo[0], sku, "Error: Invalid item SKU");
+    assert.equal(resultBufferTwo[1], upc, "Error: Invalid item UPC");
     assert.equal(
-      resultBufferOne[2],
+      resultBufferTwo[2],
       productID,
       "Error: Missing or Invalid productID"
     );
     assert.equal(
-      resultBufferOne[3],
+      resultBufferTwo[3],
       productNotes,
       "Error: Missing or Invalid productNotes"
     );
     assert.equal(
-      resultBufferOne[4],
+      resultBufferTwo[4],
       productPrice,
       "Error: Missing or Invalid productPrice"
     );
-    assert.equal(resultBufferOne[5], 7, "Error: Missing or Invalid itemState");
+    assert.equal(resultBufferTwo[5], 7, "Error: Missing or Invalid itemState");
     assert.equal(
-      resultBufferOne[6],
+      resultBufferTwo[6],
       distributorID,
       "Error: Missing or Invalid distributorID"
     );
     assert.equal(
-      resultBufferOne[7],
+      resultBufferTwo[7],
       retailerID,
       "Error: Missing or Invalid retailerID"
     );
     assert.equal(
-      resultBufferOne[8],
+      resultBufferTwo[8],
       consumerID,
       "Error: Missing or Invalid consumerID"
     );
