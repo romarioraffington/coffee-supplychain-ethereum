@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "lite-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "truffer test"
   },
   "keywords": [],
-  "author": "romario <romarioraff@gmail.com> (https://ipfs.infura.io/ipfs/QmSXiR9Khm3yo1J67nUopvVBxFJ8YGN2fUGZ34Etr3m92x/)",
+  "author": "romario <romarioraff@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "lite-server": "2.4.0"
