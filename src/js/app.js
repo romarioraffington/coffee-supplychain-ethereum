@@ -13,7 +13,6 @@ App = {
   originFarmLongitude: null,
   productNotes: null,
   productPrice: 0,
-  productId: 1234,
   distributorID: "0x0000000000000000000000000000000000000000",
   retailerID: "0x0000000000000000000000000000000000000000",
   consumerID: "0x0000000000000000000000000000000000000000",
@@ -177,7 +176,6 @@ App = {
           App.originFarmInformation,
           App.originFarmLatitude,
           App.originFarmLongitude,
-          App.productId,
           App.productNotes
         );
       })

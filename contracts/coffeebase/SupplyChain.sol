@@ -161,20 +161,19 @@ contract SupplyChain {
     string _originFarmInformation, 
     string  _originFarmLatitude, 
     string  _originFarmLongitude, 
-    uint _productID,
     string  _productNotes
   ) public {
     // Add the new item as part of Harvest
     items[_upc] = Item({
       sku: sku,
       upc: _upc,
-      ownerID: msg.sender,
+      ownerID: _originFarmerID,
       originFarmerID: _originFarmerID,
       originFarmName: _originFarmName,
       originFarmInformation: _originFarmInformation,
       originFarmLatitude: _originFarmLatitude,
       originFarmLongitude: _originFarmLongitude,
-      productID: _productID,
+      productID: sku + _upc,
       productNotes: _productNotes,
       productPrice: 0, // default value
       itemState: State.Harvested,
